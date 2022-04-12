@@ -31,7 +31,7 @@ database_uri = os.getenv('DATABASE_URI')
 data_db = os.getenv('DATA_DB')
 
 app = Flask(__name__)
-app.config[database_uri] = data_db
+app.config[database_uri] = os.getenv('DATABASE_URL', data_db)
 app.config[track_modifications] = False
 app.secret_key = secret_key
 
@@ -46,5 +46,4 @@ api.add_resource(UserRegister, "/register")
 
 
 if __name__ == '__main__':
-    db.init_app(app)
     app.run(port=5000, debug=True)
