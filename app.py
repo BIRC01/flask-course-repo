@@ -35,10 +35,6 @@ app.config[database_uri] = data_db
 app.config[track_modifications] = False
 app.secret_key = secret_key
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 jwt = JWT(app, authenticate, identity)
 
 api = Api(app)
