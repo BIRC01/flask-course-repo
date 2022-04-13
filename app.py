@@ -32,9 +32,7 @@ data_db = os.getenv('DATA_DB')
 data_db_postgresql = os.getenv('DATABASE_URL')
 
 app = Flask(__name__)
-app.config[database_uri] = data_db_postgresql
-if not app.config[database_uri]:
-    app.config[database_uri] = data_db
+app.config[database_uri] = os.environ.get(data_db_postgresql, data_db)
 app.config[track_modifications] = False
 app.secret_key = secret_key
 
