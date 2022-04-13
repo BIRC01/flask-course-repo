@@ -29,9 +29,10 @@ track_modifications = os.getenv('TRACK_MODIFICATIONS')
 secret_key = os.getenv('SECRET_KEY')
 database_uri = os.getenv('DATABASE_URI')
 data_db = os.getenv('DATA_DB')
+data_db_postgresql = os.getenv('DATABASE_URL')
 
 app = Flask(__name__)
-app.config[database_uri] = os.getenv('DATABASE_URL', data_db)
+app.config[database_uri] = (data_db_postgresql, data_db)
 app.config[track_modifications] = False
 app.secret_key = secret_key
 
